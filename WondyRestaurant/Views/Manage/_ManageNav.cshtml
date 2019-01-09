@@ -1,0 +1,20 @@
+﻿@using WondyRestaurant.Views.Manage
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<a asp-action="Index" class="form-control btn btn-outline-primary">Profile</a>
+
+<br /><br />
+<a asp-action="ChangePassword" class="form-control btn btn-outline-primary">Password</a>
+<br /> <br />
+@if (hasExternalLogins)
+{
+    <a asp-action="ExternalLogins" class="form-control btn btn-outline-primary">External logins</a>
+    <br /> <br />
+}
+
+<a asp-action="TwoFactorAuthentication" class="form-control btn btn-outline-primary">Two-factor authentication</a>
+
+
